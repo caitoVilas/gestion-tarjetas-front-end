@@ -7,7 +7,7 @@ const NuevaCuenta = (props) => {
     const USERNAME_KEY = "authUserName";
     const TOKEN_KEY = "authToken";
 
-    //const [form, setForm] = useState([]);
+    const [form, setForm] = useState([]);
     const [tarjetas, setTarjetas] = useState([]);
     const [entidades, setEntidades] = useState([]);
 
@@ -32,7 +32,7 @@ const NuevaCuenta = (props) => {
             }
        })
         let json = await resp.json();
-        console.log(json)
+    
         json.forEach((el) =>{
             setTarjetas((tarjetas) => [...tarjetas,el]);
         });
@@ -64,6 +64,23 @@ const NuevaCuenta = (props) => {
        }
 
    };
+
+   const handleChange = (e) =>{
+
+    setForm({
+        ...form,
+        [e.target.name]: e.target.value
+    })
+   };
+
+   //PROCESAMOS LA CUENTA NUEVA
+   const handleSubmit = (e) => {
+        e.preventDefault();
+
+    console.log(form.tarjeta);
+    console.log(form.entidad);
+    console.log(window.sessionStorage.getItem(USERNAME_KEY))
+   };
   
     return(
         <>
@@ -73,27 +90,35 @@ const NuevaCuenta = (props) => {
               <h2 className="text-white">Crear Cuenta</h2>
             </div>
            <div className="container container-form-in text-center py-5 mt-3">
-               <form>
+               <form onSubmit={handleSubmit}>
                <div className="row">
                    <div className="col-12 col-md-5 container-form ml-auto mr-auto py-4">
                       <select
                       name="tarjeta"
-                      className="form-control">
+                      className="form-control"
+                      onChange={handleChange}
+                      >
                           <option>Ingresa Tarjeta</option>
-                          {tarjetas.map((el) => (<option>{el.nombre}</option>))}
+                          {tarjetas.map((el) => (<option key={el.id} value={el.id}>{el.nombre}</option>))}
                       </select>
                    </div>
                    <div className="col-12 col-md-5 container-form ml-auto mr-auto py-4">
                       <select
                       name="entidad"
-                      className="form-control">
+                      className="form-control"
+                      onChange={handleChange}
+                      >
                             <option>Ingresa Entidad</option>
-                            {entidades.map((el) => (<option>{el.nombre}</option>))}
+                            {entidades.map((el) => (<option key={el.id} value={el.id}>{el.nombre}</option>))}
                        </select>
                    </div>
                </div>
                <div className="container text-center mt-5 py-4">
-                    <button className="border-btn _btn-green">Guardar</button>
+                    <button
+                     className="border-btn _btn-green"
+                     type="submit"
+                    >Guardar
+                    </button>
                </div>
                </form>
  

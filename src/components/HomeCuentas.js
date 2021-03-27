@@ -9,7 +9,7 @@ const HomeCuentas = (props) => {
     const USERNAME_KEY = "authUserName";
 
     useEffect(() => {
-        console.log(window.sessionStorage.getItem(USERNAME_KEY));
+        
         if (window.sessionStorage.getItem(USERNAME_KEY) === null) {
           window.location = "/";
         }
