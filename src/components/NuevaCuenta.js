@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Footer from './Footer';
 import MenuCuentas from './MenuCuentas';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+
 
 const NuevaCuenta = (props) => {
 
     const USERNAME_KEY = "authUserName";
     const TOKEN_KEY = "authToken";
+    const MySwal = withReactContent(Swal);
 
     const [form, setForm] = useState([]);
     const [tarjetas, setTarjetas] = useState([]);
@@ -77,9 +81,38 @@ const NuevaCuenta = (props) => {
    const handleSubmit = (e) => {
         e.preventDefault();
 
-    console.log(form.tarjeta);
-    console.log(form.entidad);
-    console.log(window.sessionStorage.getItem(USERNAME_KEY))
+    const saveCuenta = async (url) => {
+        try{
+            let newCuenta = {
+                usuario: window.sessionStorage.getItem(USERNAME_KEY),
+                tarjeta_id : form.tarjeta,
+                entidad_id: form.entidad
+            };
+            console.log(newCuenta)
+
+            let resp = await fetch(url, {
+                method: "post",
+                mode: "cors",
+                headers: {
+                    "content-type": "application/json",
+                    authorization: "Bearer " + window.sessionStorage.getItem(TOKEN_KEY)
+                },
+                body: JSON.stringify(newCuenta)
+            })
+
+            let json = await resp.json();
+
+            MySwal.fire({
+                title: <p>{json.mensaje}</p>
+            })
+
+        }catch(err){
+            MySwal.fire({
+                title: <p>{err.mensaje}</p>
+            })
+        }
+    }
+    saveCuenta("http://localhost:8080/api/cuentas");
    };
   
     return(
