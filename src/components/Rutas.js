@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import EntidadesContainer from "./EntidadesContainer";
 import Home from "./Home";
 import HomeCuentas from "./HomeCuentas";
+import HomeMovimiento from "./HomeMovimiento";
 import Login from "./Login";
 import NuevaCuenta from "./NuevaCuenta";
 import Registro from "./Registro";
@@ -18,6 +19,7 @@ const Rutas = (props) => {
         <Route exact path="/entidades-container" component={EntidadesContainer}></Route>
         <Route exact path="/tarjetas-container" component={TarjetasContainer}></Route>
         <Route exact path="/nueva-cuenta" component={NuevaCuenta}></Route>
+        <Route exact path="/movimiento/:id" component={HomeMovimiento}></Route>
       </Switch>
     </Router>
   );

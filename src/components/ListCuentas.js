@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const ListCuentas = ({cuenta, tarjeta, entidad}) => {
 
@@ -8,9 +9,13 @@ const ListCuentas = ({cuenta, tarjeta, entidad}) => {
             <td>{tarjeta}</td>
             <td>{entidad}</td>
             <td>
-                <button className="btn btn-outline-primary">
+                <Link 
+                className="btn btn-outline-primary"
+                to={`/movimiento/${cuenta}`}
+                cuenta={cuenta}
+                >
                 <i className="fas fa-pen-square"></i>
-                </button>
+                </Link>
             </td>
             <td>
                 <button className="btn btn-outline-danger">
