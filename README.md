@@ -8,11 +8,11 @@ Puedes crear las Tarjetas y Entidades que necesites para operar, a partir de las
 En las cuentas puedes cargar tus gastos y ver resumenes de cuenta total o parcial.
 Las tarjetas, entidades y cuentas puedes crearlas, utiliarlas y eliminarlas, no se permitira eliminar tarjetas y entidades que esten siendo utilizadas por cuentas ni tampoco eliminar cuentas que posean movimientos.<br><br>
 <b>Por Seguridad la app no registra numeros de tarjetas ni CBUs y tanto los numeros de cuenta como de tarjeta se gestionan con codigos internos</b>
-<br>
-##Tecnologias Utilizadas<br>
+<br><br>
+##Tecnologias Utilizadas<br><br>
 --React<br>
 --React-Router-Dom<br>
---React Boostrap<b>
+--React Boostrap<br>
 --Sweet Alert 2<br>
 
 
