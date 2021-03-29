@@ -82,6 +82,34 @@ const TarjetasContainer = (props) => {
     addTarjeta("http://localhost:8080/api/tarjeta");
   };
 
+  const deleteTarjeta = async (url) => {
+
+    try{
+      let resp = await fetch(url,{
+        method: "delete",
+        mode: "cors",
+        headers: {
+          "content-type": "application/json",
+          authorization: "Bearer " + window.sessionStorage.getItem(TOKEN_KEY),
+        }
+      })
+  
+      let json = await resp.json();
+  
+      MySwal.fire({
+        title: <p>{json.mensaje}</p>
+    })
+  
+    setTarjetas((tarjetas) => []);
+    getTarjetas("http://localhost:8080/api/tarjeta");
+  
+    }catch(err){
+      MySwal.fire({
+        title: <p>{err.mensaje}</p>
+    })
+    }
+  }
+
   return (
     <>
       <MenuCuentas />
@@ -107,7 +135,9 @@ const TarjetasContainer = (props) => {
                       <Tarjeta 
                       key={en.id} 
                       orden={en.id} 
-                      nombre={en.nombre} />
+                      nombre={en.nombre} 
+                      deleteTarjeta={deleteTarjeta}
+                      />
                     ))}
                   </tbody>
                 </Table>

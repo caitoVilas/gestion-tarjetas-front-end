@@ -83,6 +83,35 @@ const handleSubmit = (e) => {
     }
     addEntidad("http://localhost:8080/api/entidad")
 };
+
+const deleteEntidad = async (url) => {
+
+  try{
+    let resp = await fetch(url,{
+      method: "delete",
+      mode: "cors",
+      headers: {
+        "content-type": "application/json",
+        authorization: "Bearer " + window.sessionStorage.getItem(TOKEN_KEY),
+      }
+    })
+
+    let json = await resp.json();
+
+    MySwal.fire({
+      title: <p>{json.mensaje}</p>
+  })
+
+  setEntidades((entidades) => []);
+  getEntidades("http://localhost:8080/api/entidad");
+
+  }catch(err){
+    MySwal.fire({
+      title: <p>{err.mensaje}</p>
+  })
+  }
+}
+
   return (
     <>
       <MenuCuentas />
@@ -109,6 +138,7 @@ const handleSubmit = (e) => {
                     key={en.id}
                     orden={en.id} 
                     nombre={en.nombre} 
+                    deleteEntidad={deleteEntidad}
                     />
                   ))}
                 </tbody>
