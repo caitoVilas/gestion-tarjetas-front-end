@@ -50,7 +50,7 @@ const FormDetalle = ({handleChange, handleSubmit}) => {
                 onChange={handleChange}
                 />
 
-                   <div className="row d-flex justify-content-around">
+                       <div className="row d-flex justify-content-around">
                             <div className="col-5 mt-3 d-flex justify-content-around">
                                     <Link to="/home-cuentas" className="border-btn _btn-red">Cancelar</Link>
                                     <button 

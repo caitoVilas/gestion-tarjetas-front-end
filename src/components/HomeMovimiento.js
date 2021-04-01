@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {useParams, Link} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import MenuCuentas from './MenuCuentas';
 import Footer from './Footer';
 import FormDetalle from './FormDetalle';
@@ -65,16 +65,6 @@ const HomeMovimiento = () => {
                 />
             }   
             </div>
-          
-            {pase &&
-                            <div className="row d-flex justify-content-around">
-                            <div className="col-5 mt-3 d-flex justify-content-around">
-                                    <Link to="/home-cuentas" className="border-btn _btn-red">Cancelar</Link>
-                                    <button type="submit" className="border-btn _btn-green">Guardar</button>
-                            </div>
-                        </div>
-            }
-
           </div>
        
       </div>
